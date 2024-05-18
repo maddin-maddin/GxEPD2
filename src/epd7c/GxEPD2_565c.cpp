@@ -15,7 +15,7 @@
 #include "GxEPD2_565c.h"
 
 GxEPD2_565c::GxEPD2_565c(int16_t cs, int16_t dc, int16_t rst, int16_t busy) :
-  GxEPD2_EPD(cs, dc, rst, busy, LOW, 25000000, WIDTH, HEIGHT, panel, hasColor, hasPartialUpdate, hasFastPartialUpdate)
+  GxEPD2_EPD(cs, dc, rst, busy, LOW, 35000000, WIDTH, HEIGHT, panel, hasColor, hasPartialUpdate, hasFastPartialUpdate)
 {
   _paged = false;
 }
