@@ -89,6 +89,8 @@ class GxEPD2_EPD
     virtual void setPaged() {}; // for GxEPD2_154c paged workaround
     // register a callback function to be called during _waitWhileBusy continuously.
     void setBusyCallback(void (*busyCallback)(const void*), const void* busy_callback_parameter = 0);
+    uint32_t getBusyTimeout();
+    bool isBusy();
     static inline uint16_t gx_uint16_min(uint16_t a, uint16_t b)
     {
       return (a < b ? a : b);
@@ -98,6 +100,7 @@ class GxEPD2_EPD
       return (a > b ? a : b);
     };
     void selectSPI(SPIClass& spi, SPISettings spi_settings);
+
   protected:
     void _reset();
     void _waitWhileBusy(const char* comment = 0, uint16_t busy_time = 5000);

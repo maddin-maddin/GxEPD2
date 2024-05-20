@@ -286,3 +286,13 @@ void GxEPD2_EPD::_endTransfer()
   if (_cs >= 0) digitalWrite(_cs, HIGH);
   _pSPIx->endTransaction();
 }
+
+uint32_t GxEPD2_EPD::getBusyTimeout()
+{
+  return _busy_timeout;
+}
+
+bool GxEPD2_EPD::isBusy()
+{
+  return (digitalRead(_busy) == _busy_level);
+}

@@ -523,6 +523,14 @@ void GxEPD2_565c::refresh(bool partial_update_mode)
   _waitWhileBusy("_refresh", full_refresh_time);
 }
 
+void GxEPD2_565c::refresh_no_wait(bool partial_update_mode)
+{
+  _PowerOn();
+  _writeCommand(0x12); // Display Refresh
+  _writeData(0x00);
+  delay(1);
+}
+
 void GxEPD2_565c::refresh(int16_t x, int16_t y, int16_t w, int16_t h)
 {
   _PowerOn();

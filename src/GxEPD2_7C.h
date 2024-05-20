@@ -461,6 +461,14 @@ class GxEPD2_7C : public GxEPD2_GFX_BASE_CLASS
     {
       epd2.hibernate();
     }
+    uint32_t getBusyTimeout()
+    {
+      return epd2.getBusyTimeout();
+    }
+    bool isBusy()
+    {
+      return epd2.isBusy();
+    }
   private:
     template <typename T> static inline void
     _swap_(T & a, T & b)
