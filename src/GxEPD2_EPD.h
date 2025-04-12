@@ -8,6 +8,10 @@
 // Version: see library.properties
 //
 // Library: https://github.com/ZinggJM/GxEPD2
+//
+// Modified:
+// by: maddin-maddin
+// changes: add getBusyTimeout(), isBusy()
 
 #ifndef _GxEPD2_EPD_H_
 #define _GxEPD2_EPD_H_

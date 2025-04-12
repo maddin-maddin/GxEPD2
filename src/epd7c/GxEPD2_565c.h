@@ -10,6 +10,11 @@
 // Version: see library.properties
 //
 // Library: https://github.com/ZinggJM/GxEPD2
+//
+// Modified:
+// by: maddin-maddin
+// changes: add refresh_no_wait()
+//          add mirror functionality
 
 #ifndef _GxEPD2_565c_H_
 #define _GxEPD2_565c_H_
@@ -32,6 +37,7 @@ class GxEPD2_565c : public GxEPD2_EPD
     static const uint16_t full_refresh_time = 12000; // ms, e.g. 11354001us
     static const uint16_t partial_refresh_time = 12000; // ms, e.g. 11354001us
     // constructor
+    GxEPD2_565c(int16_t cs, int16_t dc, int16_t rst, int16_t busy, bool mirror_x, bool mirror_y);
     GxEPD2_565c(int16_t cs, int16_t dc, int16_t rst, int16_t busy);
     // methods (virtual)
     //  Support for Bitmaps (Sprites) to Controller Buffer and to Screen
@@ -71,6 +77,8 @@ class GxEPD2_565c : public GxEPD2_EPD
     void _InitDisplay();
   private:
     bool _paged;
+    bool _mirror_x;
+    bool _mirror_y;
 };
 
 #endif

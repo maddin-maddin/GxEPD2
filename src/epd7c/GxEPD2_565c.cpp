@@ -11,6 +11,12 @@
 // Version: see library.properties
 //
 // Library: https://github.com/ZinggJM/GxEPD2
+//
+// Modified:
+// by: maddin-maddin
+// changes: increased timeout value to 35 Seconds
+//          add refresh_no_wait()
+//          add mirror functionality
 
 #include "GxEPD2_565c.h"
 
@@ -18,6 +24,16 @@ GxEPD2_565c::GxEPD2_565c(int16_t cs, int16_t dc, int16_t rst, int16_t busy) :
   GxEPD2_EPD(cs, dc, rst, busy, LOW, 35000000, WIDTH, HEIGHT, panel, hasColor, hasPartialUpdate, hasFastPartialUpdate)
 {
   _paged = false;
+  _mirror_x = false;
+  _mirror_y = false;
+}
+
+GxEPD2_565c::GxEPD2_565c(int16_t cs, int16_t dc, int16_t rst, int16_t busy, bool mirror_x, bool mirror_y) :
+  GxEPD2_EPD(cs, dc, rst, busy, LOW, 35000000, WIDTH, HEIGHT, panel, hasColor, hasPartialUpdate, hasFastPartialUpdate)
+{
+  _paged = false;
+  _mirror_x = mirror_x;
+  _mirror_y = mirror_y;
 }
 
 void GxEPD2_565c::clearScreen(uint8_t value)
@@ -601,7 +617,11 @@ void GxEPD2_565c::_InitDisplay()
     _power_is_on = false;
   }
   _writeCommand(0x00); // Panel Settings
-  _writeData(0xEF);
+  uint8_t panel_settings = 0xEF;
+  if (_mirror_x) panel_settings &= ~0x0100; // SHL
+  if (_mirror_y) panel_settings &= ~0b1000; // UD
+  _writeData(panel_settings);
+  //_writeData(0xEF);
   _writeData(0x08);
   _writeCommand(0x01); // Power Settings
   _writeData(0x37);
