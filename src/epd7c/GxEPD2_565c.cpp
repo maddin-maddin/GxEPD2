@@ -618,7 +618,7 @@ void GxEPD2_565c::_InitDisplay()
   }
   _writeCommand(0x00); // Panel Settings
   uint8_t panel_settings = 0xEF;
-  if (_mirror_x) panel_settings &= ~0x0100; // SHL
+  if (_mirror_x) panel_settings &= ~0b0100; // SHL
   if (_mirror_y) panel_settings &= ~0b1000; // UD
   _writeData(panel_settings);
   //_writeData(0xEF);
